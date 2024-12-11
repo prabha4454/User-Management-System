@@ -10,7 +10,7 @@ Customer Routes
 router.get('/', customerController.homePage)
 
 router.get('/add', customerController.addUser);
-
+router.get('/reg',customerController.registerUser)
 router.post('/add', customerController.postUser);
 
 router.get('/profile/:id',customerController.profileUserPage)

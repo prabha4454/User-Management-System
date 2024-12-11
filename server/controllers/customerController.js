@@ -159,3 +159,19 @@ exports.editUserPage=async(req,res,next)=>{
     }
 }
 
+/* 
+//GET
+//register user page
+ */
+
+exports.registerUser=async (req,res,next)=>{
+
+    
+    const auth=1;
+    const local={
+        title:'register User',
+        description:'This is the crud-user management system'
+    };
+    res.render(path.join(__dirname,'..','..','views','authentication','register'),{local,auth});
+
+};
