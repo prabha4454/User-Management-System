@@ -1,0 +1,52 @@
+/* .add-user-form{
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+    .form{
+        width: 450px;
+        height: 350px;
+        border-radius: 0.4rem;
+        background-color: rgb(195, 250, 195);
+        padding: 1rem;
+    }
+
+    p{
+        margin-top: 2rem;
+    }
+    input{
+        width: 100%;
+        height: 2.5rem;
+        
+    }
+    label{
+        margin-bottom: 4px;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    button{
+        margin-top: 3rem;
+       
+    }
+
+} 
+.u-a-h1{
+color: rgb(12, 98, 12);
+font-size: 35px;
+font-family: 'Courier New', Courier, monospace;
+font-weight: 400;
+margin-top: 1rem;
+} */
+.u-a-h1{
+    color: rgb(12, 98, 12);
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 400;
+    
+}
+.breadcrumb-section{
+    display: flex;
+   
+}
