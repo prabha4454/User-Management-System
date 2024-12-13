@@ -1,5 +1,26 @@
 const User=require('../model/User')
 const path=require('path')
+const fs = require('fs');
+
+const Notes=require('../model/Notes')
+
+/* 
+//multer file uploade config
+ */
+const multer = require('multer');
+const { title } = require('process');
+
+const storeFile=multer.diskStorage({
+    destination:function(req,file,cb){
+        cd(null,'../../data/uploades/notes')
+    },
+    filename:function(req,file,cb){
+        cb(null,req.body.subcode)
+    }
+
+    })
+const upload = multer({storage:storeFile})
+
 /* 
 /GET
 /Home Page
@@ -12,14 +33,14 @@ exports.homePage=async (req,res)=>{
 
 
         try {
-
+            const auth=0;
             const users= await User.find().limit(20)
       
               const local={
                   title:'Add User',
                   description:'This is the crud-user management system'
               };
-              res.render(path.join(__dirname,'..','..','views','layouts','index'),{local, users});
+              res.render(path.join(__dirname,'..','..','views','layouts','index'),{local, users,auth});
               
           } catch (error) {
               res.status(505).send('Error Fetching User')
@@ -34,12 +55,12 @@ exports.homePage=async (req,res)=>{
 exports.addUser=async (req,res)=>{
 
     
-    
+    const auth=0;
     const local={
         title:'Add User',
         description:'This is the crud-user management system'
     };
-    res.render(path.join(__dirname,'..','..','views','customer','addUser'),{local});
+    res.render(path.join(__dirname,'..','..','views','customer','addUser'),{local,auth});
 
 };
 
@@ -62,12 +83,12 @@ exports.postUser=async (req,res)=>{
     try {
 
 await User.create(newUser);
-
+const auth=0;
         const local={
             title:'Add User',
             description:'This is the crud-user management system'
         };
-        res.render(path.join(__dirname,'..','..','views','customer','addUser'),{local});
+        res.render(path.join(__dirname,'..','..','views','customer','addUser'),{local,auth});
         
     } catch (error) {
         res.status(505).send('Error Creting User')
@@ -83,12 +104,12 @@ exports.profileUserPage=async(req,res,next)=>{
 
     try{
              const view= await User.findOne({ _id:req.params.id});
- 
+             const auth=0;
         const local={
             title:' User profile',
             description:'This is the crud-user management system'
         };
-         res.render(path.join(__dirname,'..','..','views','customer','profile'),{local,view});
+         res.render(path.join(__dirname,'..','..','views','customer','profile'),{local,view,auth});
     }
     catch(err){
         res.status(500).send('Error finging the Details'+err);
@@ -103,12 +124,12 @@ exports.editUserPage=async(req,res,next)=>{
 
     try{
              const edit= await User.findOne({ _id:req.params.id});
- 
+             const auth=0;
         const local={
             title:'Edit User',
             description:'This is the crud-user management system'
         };
-         res.render(path.join(__dirname,'..','..','views','customer','editUser'),{local,edit});
+         res.render(path.join(__dirname,'..','..','views','customer','editUser'),{local,edit,auth});
     }
     catch(err){
         res.status(500).send('Error finging the Details'+err);
@@ -175,3 +196,55 @@ exports.registerUser=async (req,res,next)=>{
     res.render(path.join(__dirname,'..','..','views','authentication','register'),{local,auth});
 
 };
+
+/* 
+//GET 
+// file uploade page
+ */
+
+exports.fileUpload=async (req,res,next)=>{
+    try {
+        const auth=0;
+    const local={
+        title:'file uploader ',
+        description:'This is the crud-user management system'
+    };
+    res.render(path.join(__dirname,'..','..','views','customer','fileUpload'),{local,auth});
+
+    } catch (error) {
+        res.status(500).send('Error error loading page');
+    }
+};
+
+
+/* 
+//Post
+//notes upload
+ */
+
+exports.fileUploader=async (req,res,next)=>{
+   const newNotes={
+    subname:req.body.subname,
+    subcode:req.body.subcode,
+    department:req.body.department,
+    studyear:req.body.studyear,
+    semester:req.body.semester,
+    createdAt: Date.now()
+   }
+   
+ 
+    try {
+        await upload.single(req.body.noteFile);
+        await Notes.create(newNotes);
+        const auth=0;
+        const local={
+            title:'Add User',
+            description:'This is the crud-user management system'
+        };
+        res.render(path.join(__dirname,'..','..','views','customer','fileUpload'),{local,auth});
+        console.log('file added')
+    } catch (error) {
+        res.status(505).send('cannot upload the file'+error)
+        
+    }
+}

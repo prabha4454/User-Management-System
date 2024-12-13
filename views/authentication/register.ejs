@@ -1,6 +1,7 @@
-<div class="container-fluid px-4 align-middle" style="height: 100vh;">
-    <div class="container w-50 mx-auto">
-    <form action="/edit" method="post" >
+<!-- <div class=" px-4 " style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div class=" w-50">
+        <h1 class="text-center text-success mb-5">Register Page</h1>
+    <form action="/register" method="post" >
         <div class="row">
             <div class="form-group py-2 col">
                 <label for="fname">First Name:</label>
@@ -38,4 +39,54 @@
 </div>
        
     </div>
-</div>
+</div> -->
+
+
+
+<!-- register page -->
+
+
+<header class="container" id="reg-header">
+    <h3> Register</h3>
+    <p>Enter your details to register</p>
+</header>
+<main>
+    <form action="">
+        <div id="form-container" class="container">
+        <div class="form-row">
+        <div class="form-group">
+            <label for="fname">FirstName:</label>
+            <input type="text" name="fname" id="fname" class="form-control" placeholder="Enter your first name" >
+
+        </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="lname">LastName:</label>
+                <input type="text" name="lname" id="lname" class="form-control" placeholder="Enter your surname">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="phone">Phone No:</label>
+                <input type="tel" class="form-control" id="phone" placeholder="Enter your mobile number">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+<label for="reg-pwd">password</label>
+<input type="password" class="form-control" id="reg-pwd" placeholder="set your password" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success d-block mx-auto mt-3" >Register</button>
+    </div>
+    </form>
+
+</main>

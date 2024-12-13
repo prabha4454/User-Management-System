@@ -19,4 +19,7 @@ router.post('/edit/:id',customerController.editUser)
 
 
 router.post('/delete/:id',customerController.deleteUser)
+
+router.get('/file',customerController.fileUpload);
+router.post('/fileUploader',customerController.fileUploader);
 module.exports = router;

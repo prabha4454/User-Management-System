@@ -20,33 +20,62 @@
 
 
     <% if (auth===1) { %>
-        <main class="col">
-            <%- body %>
-        </main>
+       
+
       
+         
+            <!--  header file -->
+            <%- include('../partials/clientHeader') %>
+        
+                <div class="d-flex">
+                    <!--  sidebar -->
+        
+            <%- include('../partials/clientSidebar') %>
+        
+                  
+        
+                        <main class="col">
+                            <%- body %>
+                        </main>
+        
+                </div>
+<% } else if (auth==='home') { %>
+ <!--  header file -->
+   <%- include('../partials/homeHeader') %>
+   <main class="col">
+    <%- body %>
+</main>
 
 
+<% } else if (auth==='admin') { %>
+ 
+ <!--  header file -->
+ <%- include('../partials/header') %>
+
+ <div class="d-flex">
+     <!--  sidebar -->
+
+<%- include('../partials/sidebar') %>
+
+   
+
+         <main class="col">
+             <%- body %>
+         </main>
+
+ </div>
         <% } else { %>
          
-    <!--  header file -->
-    <%- include('../partials/header') %>
-
-        <div class="d-flex">
-            <!--  sidebar -->
-
-    <%- include('../partials/sidebar') %>
-
-          
-
-                <main class="col">
-                    <%- body %>
-                </main>
-
-        </div>
+   
+            <main class="col">
+                <%- body %>
+            </main>
+            
         <% } %>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+            <script src="/js/clientHome.js"></script>
 </body>
 
 </html>
