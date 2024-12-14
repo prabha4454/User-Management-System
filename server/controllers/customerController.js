@@ -33,7 +33,7 @@ exports.homePage=async (req,res)=>{
 
 
         try {
-            const auth=0;
+            const auth='admin';
             const users= await User.find().limit(20)
       
               const local={
@@ -55,7 +55,7 @@ exports.homePage=async (req,res)=>{
 exports.addUser=async (req,res)=>{
 
     
-    const auth=0;
+    const auth='admin';
     const local={
         title:'Add User',
         description:'This is the crud-user management system'
@@ -83,7 +83,7 @@ exports.postUser=async (req,res)=>{
     try {
 
 await User.create(newUser);
-const auth=0;
+const auth='admin';
         const local={
             title:'Add User',
             description:'This is the crud-user management system'
@@ -104,7 +104,7 @@ exports.profileUserPage=async(req,res,next)=>{
 
     try{
              const view= await User.findOne({ _id:req.params.id});
-             const auth=0;
+             const auth='admin';
         const local={
             title:' User profile',
             description:'This is the crud-user management system'
@@ -124,7 +124,7 @@ exports.editUserPage=async(req,res,next)=>{
 
     try{
              const edit= await User.findOne({ _id:req.params.id});
-             const auth=0;
+             const auth='admin';
         const local={
             title:'Edit User',
             description:'This is the crud-user management system'
@@ -204,7 +204,7 @@ exports.registerUser=async (req,res,next)=>{
 
 exports.fileUpload=async (req,res,next)=>{
     try {
-        const auth=0;
+        const auth='admin';
     const local={
         title:'file uploader ',
         description:'This is the crud-user management system'
@@ -236,7 +236,7 @@ exports.fileUploader=async (req,res,next)=>{
     try {
         await upload.single(req.body.noteFile);
         await Notes.create(newNotes);
-        const auth=0;
+        const auth='admin';
         const local={
             title:'Add User',
             description:'This is the crud-user management system'

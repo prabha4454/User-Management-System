@@ -38,6 +38,7 @@ exports.clientRegister=async (req,res,next)=>{
         lname:req.body.lname,
         email:req.body.email,
         tel:req.body.tel,
+        password:req.body.password,
         detail:req.body.detail,
         createdAt: Date.now()
 
@@ -137,7 +138,7 @@ exports.userDashboard=async(req,res,next)=>{
    
    try{
     
-    const auth='home';
+    const auth=1;
         const local={
             title:'home page',
             description:'This is the crud-user management system'

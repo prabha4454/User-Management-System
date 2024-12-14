@@ -1,22 +1,22 @@
-<header class="container" id="login-header">
+<header class="container text-center mt-5 mb-5" id="login-header">
     <h2>login</h2>
     <p>Enter your username/password to login </p>
 </header>
-<main>
-    <form action="">
-<div class="container  " id="form-container"> 
-        <div class="form-row  ">
+<main class="">
+    <form action="/login" method="post">
+<div class="container d-flex w-50 flex-column justify-content-center align-middle  " id="form-container"> 
+        <div class="form-row mb-4  ">
             <div class="form-group ">
                 <label for="uname">UserName:</label>
-                <input type="text/email" class="form-control" id="uname" placeholder="Enter your email/uname" required>
+                <input type="text/email" class="form-control" name="email" id="uname" placeholder="Enter your email/uname" required>
             </div>
 
             
         </div>
-        <div class="form-row mt-3">
+        <div class="form-row mt-3  mb-4">
             <div class="form-group">
                 <label for="login-pwd" >Password:</label>
-                <input type="password" class="form-control " id="login-pwd" placeholder="Enter your password" required>
+                <input type="password" class="form-control " id="login-pwd" name="password" placeholder="Enter your password" required>
             </div>
         </div>
         <button type="submit" class="btn btn-success mx-auto d-block mt-3">Login</button>

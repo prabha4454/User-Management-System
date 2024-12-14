@@ -46,46 +46,46 @@
 <!-- register page -->
 
 
-<header class="container" id="reg-header">
+<header class="container text-center mt-4 mb-4" id="reg-header">
     <h3> Register</h3>
     <p>Enter your details to register</p>
 </header>
-<main>
-    <form action="">
+<main class="container w-50 d-flex flex-column align-middle justify-content-center mt-4">
+    <form action="/register" method="post">
         <div id="form-container" class="container">
-        <div class="form-row">
+        <div class="form-row mb-3">
         <div class="form-group">
             <label for="fname">FirstName:</label>
             <input type="text" name="fname" id="fname" class="form-control" placeholder="Enter your first name" >
 
         </div>
         </div>
-        <div class="form-row">
+        <div class="form-row  mb-3">
             <div class="form-group">
                 <label for="lname">LastName:</label>
                 <input type="text" name="lname" id="lname" class="form-control" placeholder="Enter your surname">
             </div>
         </div>
-        <div class="form-row">
+        <div class="form-row  mb-3">
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email" required>
 
             </div>
         </div>
-        <div class="form-row">
+        <div class="form-row  mb-3">
             <div class="form-group">
                 <label for="phone">Phone No:</label>
-                <input type="tel" class="form-control" id="phone" placeholder="Enter your mobile number">
+                <input type="tel" class="form-control" name="tel" id="phone" placeholder="Enter your mobile number">
             </div>
         </div>
-        <div class="form-row">
+        <div class="form-row  mb-3">
             <div class="form-group">
 <label for="reg-pwd">password</label>
-<input type="password" class="form-control" id="reg-pwd" placeholder="set your password" required>
+<input type="password" class="form-control" name="password" id="reg-pwd" placeholder="set your password" required>
             </div>
         </div>
-        <button type="submit" class="btn btn-success d-block mx-auto mt-3" >Register</button>
+        <button type="submit" class="btn btn-success d-block mx-auto mt-5" >Register</button>
     </div>
     </form>
 
