@@ -12,10 +12,10 @@ const { title } = require('process');
 
 const storeFile=multer.diskStorage({
     destination:function(req,file,cb){
-        cd(null,'../../data/uploades/notes')
+        cd(null,'uploads/')
     },
     filename:function(req,file,cb){
-        cb(null,req.body.subcode)
+        cb(null,Date.now() + path.extname(file.originalname ))
     }
 
     })
@@ -222,7 +222,7 @@ exports.fileUpload=async (req,res,next)=>{
 //notes upload
  */
 
-exports.fileUploader=async (req,res,next)=>{
+exports.fileUploader=  async ( req,res,next)=>{
    const newNotes={
     subname:req.body.subname,
     subcode:req.body.subcode,
@@ -231,10 +231,13 @@ exports.fileUploader=async (req,res,next)=>{
     semester:req.body.semester,
     createdAt: Date.now()
    }
-   
+   if(!req.file){
+    console.log('not file recived')
+   }
  
     try {
-        await upload.single(req.body.noteFile);
+       
+        console.log(req.file)
         await Notes.create(newNotes);
         const auth='admin';
         const local={

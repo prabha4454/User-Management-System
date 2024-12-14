@@ -8,7 +8,7 @@ const notesSchema=new mongoose.Schema({
     },
     subcode:{type:String,},
     department:{type:String,},
-    studyear:{type:Number,},
+    studyear:{type:String,},
     semester:{
         type:String,
         
