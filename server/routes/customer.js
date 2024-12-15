@@ -8,7 +8,7 @@ const multer = require('multer');
 
 const storeFile=multer.diskStorage({
     destination:function(req,file,cb){
-        cb(null,'uploads/')
+        cb(null,'public/uploads')
     },
     filename:function(req,file,cb){
         cb(null,req.body.subcode+ path.extname(file.originalname ))
@@ -20,20 +20,21 @@ const upload = multer({storage:storeFile})
 /* 
 Customer Routes
  */
+router.get('/adminDashboard',customerController.adminDashboard)
+router.get('/adminDashboard/usersDetails',customerController.usersDetails)
 
-router.get('/', customerController.homePage)
-
-router.get('/add', customerController.addUser);
+router.get('/adminDahboard/addUser', customerController.addUser);
 router.get('/reg',customerController.registerUser)
-router.post('/add', customerController.postUser);
+router.post('/adminDahboard/addUser', customerController.postUser);
 
-router.get('/profile/:id',customerController.profileUserPage)
-router.get('/edit/:id',customerController.editUserPage)
-router.post('/edit/:id',customerController.editUser)
+router.get('/adminDashboard/user/profile/:id',customerController.profileUserPage)
+router.get('/adminDashboard/user/edit/:id',customerController.editUserPage)
+router.post('/adminDashboard/user/edit/:id',customerController.editUser)
 
 
-router.post('/delete/:id',customerController.deleteUser)
+router.post('/adminDashboard/user/delete/:id',customerController.deleteUser)
 
-router.get('/file',customerController.fileUpload);
-router.post('/fileUploader',upload.single('noteFile'),customerController.fileUploader);
+router.get('/adminDashboard/materials/file',customerController.fileUpload);
+router.post('/adminDashboard/materials/fileUploader',upload.single('noteFile'),customerController.fileUploader);
+router.get('/adminDashboard/materials/notesList',customerController.notesDetails);
 module.exports = router;

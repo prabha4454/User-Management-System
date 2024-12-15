@@ -13,6 +13,12 @@ const notesSchema=new mongoose.Schema({
         type:String,
         
     },
+    path:{
+        type:String,
+    },
+    filename:{
+        type:String,
+    },
     createdBy:{
         type:String,
     },

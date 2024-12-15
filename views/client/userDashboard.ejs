@@ -1,23 +1,30 @@
+<div class="container ">
 
 
 
-<div class="container " >
     <div class="row">
-        <div class="d-flex mt-4 mx-auto" style="width: 20rem; "  >
-            <div class="card">
-                <iframe src="" frameborder="0" class="card-img-top" style="overflow: hidden;"
-                    scrolling="no" loading="lazy"></iframe>
-                <div class="card-title text-center">
-                    <h4>name of the subject</h4>
+        <% allNotes.forEach(notes=> { %>
+            <div class="d-flex mt-4 mx-auto" style="width: 20rem; ">
+                <div class="card">
+                    <iframe src="/uploads/<%= notes.filename %>" frameborder="0" class="card-img-top" style="overflow-y: hidden;"
+                        scrolling="no" loading="lazy"></iframe>
+                    <div class="card-title text-center">
+                        <h4>
+                            <%= notes.subname+notes.subcode %>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <a class="btn btn-primary d-block w-50 mx-auto my-2" href="/uploads/<%= notes.filename %>"><i
+                                class="fa fa-eye m-1" aria-hidden="true"></i>view</a>
+
+                        <a class="btn  btn-primary d-block w-50 mx-auto" href="/uploads/<%= notes.filename %>" download="<%= notes.subname %>-<%= notes.subcode %>"><i
+                                class="fa fa-download m-1" aria-hidden="true"></i>download</a>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <a class="btn btn-primary d-block w-50 mx-auto my-2" href=""><i
-                            class="fa fa-eye m-1" aria-hidden="true"></i>view</a>
-    
-                    <a class="btn  btn-primary d-block w-50 mx-auto" href="" download="main"><i
-                            class="fa fa-download m-1" aria-hidden="true"></i>download</a>
-                </div>
+
+
             </div>
-    
-        </div>    
-</div>
+            <% } )%>
+
+    </div>
+    </div>

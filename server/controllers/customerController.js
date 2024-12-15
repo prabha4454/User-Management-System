@@ -21,12 +21,32 @@ const storeFile=multer.diskStorage({
     })
 const upload = multer({storage:storeFile})
 
+
+
+/* 
+//GET
+// ADMIN dashboard */
+exports.adminDashboard=async(req,res,next)=>{
+    try {
+        const auth='admin';
+       
+          const local={
+              title:'Admin Dashboard',
+              description:'This is the crud-user management system'
+          };
+          res.render(path.join(__dirname,'..','..','views','layouts','adminDashboard'),{local,auth});
+          
+      } catch (error) {
+          res.status(505).send('Error loading the page')
+      }
+}
+
 /* 
 /GET
 /Home Page
  */
 
-exports.homePage=async (req,res)=>{
+exports.usersDetails=async (req,res)=>{
     
       
     
@@ -40,7 +60,7 @@ exports.homePage=async (req,res)=>{
                   title:'Add User',
                   description:'This is the crud-user management system'
               };
-              res.render(path.join(__dirname,'..','..','views','layouts','index'),{local, users,auth});
+              res.render(path.join(__dirname,'..','..','views','customer','usersDetails'),{local, users,auth});
               
           } catch (error) {
               res.status(505).send('Error Fetching User')
@@ -83,12 +103,12 @@ exports.postUser=async (req,res)=>{
     try {
 
 await User.create(newUser);
-const auth='admin';
+/* const auth='admin';
         const local={
             title:'Add User',
             description:'This is the crud-user management system'
-        };
-        res.render(path.join(__dirname,'..','..','views','customer','addUser'),{local,auth});
+        }; */
+    res.redirect('/adminDahboard/addUser')
         
     } catch (error) {
         res.status(505).send('Error Creting User')
@@ -209,7 +229,7 @@ exports.fileUpload=async (req,res,next)=>{
         title:'file uploader ',
         description:'This is the crud-user management system'
     };
-    res.render(path.join(__dirname,'..','..','views','customer','fileUpload'),{local,auth});
+    res.render(path.join(__dirname,'..','..','views','studyMaterials','fileUpload'),{local,auth});
 
     } catch (error) {
         res.status(500).send('Error error loading page');
@@ -229,6 +249,8 @@ exports.fileUploader=  async ( req,res,next)=>{
     department:req.body.department,
     studyear:req.body.studyear,
     semester:req.body.semester,
+    path:req.file.path,
+    filename:req.file.filename,
     createdAt: Date.now()
    }
    if(!req.file){
@@ -239,15 +261,43 @@ exports.fileUploader=  async ( req,res,next)=>{
        
         console.log(req.file)
         await Notes.create(newNotes);
-        const auth='admin';
+       /*  const auth='admin';
         const local={
             title:'Add User',
             description:'This is the crud-user management system'
-        };
-        res.render(path.join(__dirname,'..','..','views','customer','fileUpload'),{local,auth});
+        }; */
+        res.redirect('/adminDashboard/materials/file')
         console.log('file added')
     } catch (error) {
         res.status(505).send('cannot upload the file'+error)
         
     }
 }
+
+
+/* 
+//Get 
+// find all notes
+//  */
+
+exports.notesDetails=async (req,res)=>{
+    
+      
+    
+
+
+    try {
+        const auth='admin';
+        const allNotes= await Notes.find().limit(20)
+  
+          const local={
+              title:'Notes Details',
+              description:'This is the crud-user management system'
+          };
+          res.render(path.join(__dirname,'..','..','views','studyMaterials','notesList'),{local, allNotes,auth});
+          
+      } catch (error) {
+          res.status(505).send('Error Fetching Details')
+      }
+
+};

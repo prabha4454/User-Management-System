@@ -33,7 +33,7 @@
 <!-- user adding form -->
 
 <div class="container px-4">
-    <form action="/edit/<%= edit.id %>" method="post">
+    <form action="/adminDashboard/user/edit/<%= edit.id %>" method="post">
         <div class="row">
             <div class="form-group py-2 col">
                 <label for="fname">First Name:</label>
@@ -70,7 +70,7 @@
     
 </div>
         </form>
-        <form action="/delete/<%= edit.id %>" method="post">
+        <form action="/adminDashboard/user/delete/<%= edit.id %>" method="post">
             <button class="btn btn-danger mt-4 btn-sm " type="submit"> <i class="bi bi-trash3"></i> Delete User</button>
         </form>
 </div>

@@ -40,6 +40,7 @@ exports.clientRegister=async (req,res,next)=>{
         tel:req.body.tel,
         password:req.body.password,
         detail:req.body.detail,
+     
         createdAt: Date.now()
 
     };
@@ -99,7 +100,7 @@ exports.login=async (req,res,next)=>{
         else{
             /* const token=await user.generateToken();
             res.status(200).send(token); */
-            res.redirect('/userD')
+            res.redirect('/userDashboard')
             }
             } catch (error) {
                 res.status(505).send('Error logging in')
@@ -138,14 +139,64 @@ exports.userDashboard=async(req,res,next)=>{
    
    try{
     
-    const auth=1;
+    const auth='user';
+    const allNotes= await Notes.find()
         const local={
             title:'home page',
             description:'This is the crud-user management system'
         };
-        res.render(path.join(__dirname,'..','..','views','client','userDashboard'),{local,auth});
+        res.render(path.join(__dirname,'..','..','views','client','userDashboard'),{local,auth,allNotes});
         
     } catch (error) {
         res.status(505).send('Error Registering User')
+    }
+}
+
+
+/* 
+//GET
+// to get notes search page
+ */
+
+exports.notesSearchPage=async(req,res,next)=>{
+    try{
+    
+        const auth='user';
+    const section='search';
+            const local={
+                title:'home page',
+                description:'This is the crud-user management system'
+            };
+            res.render(path.join(__dirname,'..','..','views','client','notes'),{local,auth,section});
+            
+        } catch (error) {
+            res.status(505).send('Error finding page')
+        }
+}
+
+/* 
+//post
+// notes searcher
+//  */
+
+exports.notesFinder=async(req,res,next)=>{
+    try {
+        const auth='user';
+        const section='result'
+        const notes={
+            studyear:req.body.studyear,
+            department:req.body.department,
+            semester:req.body.semester
+        }
+        const findNotes=await Notes.find(notes)
+        
+        const local={
+            title:'home page',
+            description:'This is the crud-user management system'
+        };
+        res.render(path.join(__dirname,'..','..','views','client','notes'),{local,auth,findNotes,section});
+    } catch (error) {
+        res.status(505).send('Error finding notes')
+        
     }
 }
