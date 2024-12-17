@@ -3,8 +3,9 @@ const path=require('path')
 const User=require('../model/User')
 
 const fs = require('fs');
-
 const Notes=require('../model/Notes')
+const Admin=require('../model/admin')
+
 /* 
 
 /get
@@ -84,10 +85,10 @@ exports.clientLoginPage=async (req,res,next)=>{
 
 /* 
 //post
-//login page
+// user login page
  */
 
-exports.login=async (req,res,next)=>{
+exports.userLogin=async (req,res,next)=>{
     try {
         const query={
             email:req.body.email,
@@ -101,6 +102,53 @@ exports.login=async (req,res,next)=>{
             /* const token=await user.generateToken();
             res.status(200).send(token); */
             res.redirect('/userDashboard')
+            }
+            } catch (error) {
+                res.status(505).send('Error logging in')
+            }
+        }
+
+    
+/* 
+//Get
+// admin login page
+ */
+
+exports.adminLoginPage=async (req,res,next)=>{
+    try {
+        const auth='login';
+        const local={
+            title:' admin login ',
+            description:'This is the crud-user management system'
+        };
+        res.render(path.join(__dirname,'..','..','views','admin','authentication','adminLogin'),{local, auth});
+
+    } catch (error) {
+        res.status(505).send('cannot find the page')
+    }
+};
+
+
+/* 
+//post
+// admin login function 
+ */
+
+exports.adminLogin=async (req,res,next)=>{
+    try {
+        const query={
+            uname:req.body.uname,
+            password:req.body.password
+        }
+        const user=await Admin.findOne(query);
+        if(user){
+            req.session.user ={ uname:user.uname }; 
+            res.redirect('/adminDashboard')
+        }
+        else{
+            /* const token=await user.generateToken();
+            res.status(200).send(token); */
+           res.status(500).send('permission denied')
             }
             } catch (error) {
                 res.status(505).send('Error logging in')

@@ -1,8 +1,9 @@
 const User=require('../model/User')
 const path=require('path')
 const fs = require('fs/promises');
-
 const Notes=require('../model/Notes')
+const Admin=require('../model/admin')
+
 
 /* 
 //multer file uploade config
@@ -336,6 +337,41 @@ exports.createAdminPage=async(req,res,next)=>{
 
 /* 
 //POST
+// create admin post funtion
+//  */
+
+exports.createAdmin=async (req,res)=>{
+    
+    const newAdmin={
+        fname:req.body.fname,
+        lname:req.body.lname,
+        email:req.body.email,
+        tel:req.body.tel,
+        uname:req.body.uname,
+         password:req.body.password,
+        createdAt: Date.now()
+
+    };
+
+    try {
+
+await Admin.create(newAdmin);
+/* const auth='admin';
+        const local={
+            title:'Add User',
+            description:'This is the crud-user management system'
+        }; */
+    res.redirect('/adminDahboard/createAdmin')
+        
+    } catch (error) {
+        res.status(505).send('Error Creting Admin user')
+    }
+   
+
+};
+
+/* 
+//POST
 // delete notes file
 //  */
 
@@ -355,6 +391,46 @@ exports.deletenotes=async(req,res,next)=>{
         await Notes.findByIdAndDelete(req.params.id);
 
         res.redirect('/adminDashboard/materials/notesList')
+    } catch (err) {
+        res.status(500).send('cannot delete file'+err)
+    }
+
+}
+
+
+/* 
+//GET 
+// admin list page
+//  */
+
+exports.adminListPage=async(req,res,next)=>{
+    try {
+        const admins=await Admin.find()
+        const auth='admin';
+        const local={
+            title:' Admin Dashboard',
+            description:'This is the crud-user management system'}
+
+            res.render(path.join(__dirname,'..','..','views','admin','customer','adminList'),{local,auth,admins});
+        
+    } catch (error) {
+        res.status(505).send('cannot find Admin details')
+        
+    }
+}
+
+/* 
+//POST
+// to delete admin account */
+
+exports.deleteAdmin=async(req,res,next)=>{
+
+    try {
+       
+
+        await Admin.findByIdAndDelete(req.params.id);
+
+        res.redirect('/adminDashboard/adminList')
     } catch (err) {
         res.status(500).send('cannot delete file'+err)
     }

@@ -5,6 +5,8 @@ const path=require('path')
 const customerController=require('../controllers/customerController')
 const multer = require('multer');
 
+const jwt=require('jsonwebtoken')
+
 
 const storeFile=multer.diskStorage({
     destination:function(req,file,cb){
@@ -17,12 +19,22 @@ const storeFile=multer.diskStorage({
     })
 const upload = multer({storage:storeFile})
 
+
+function checkAuth(req, res, next) {
+    if (req.session.user) {
+        next(); // User is logged in, allow access
+    } else {
+        res.redirect('/adminLogin'); // Redirect to login if not logged in
+    }
+}
+
+
 /* 
 Customer Routes
  */
 
 //admin Dashboard
-router.get('/adminDashboard',customerController.adminDashboard)
+router.get('/adminDashboard',checkAuth,customerController.adminDashboard);
 
 //user details list
 router.get('/adminDashboard/usersDetails',customerController.usersDetails)
@@ -52,7 +64,16 @@ router.get('/adminDashboard/materials/notesList',customerController.notesDetails
 //For delete notes 
 router.post('/adminDashboard/materials/delete/:id',customerController.deletenotes)
 
+//for admin detail list
+router.get('/adminDahboard/adminList',customerController.adminListPage)
+
 //create admin
 router.get('/adminDahboard/createAdmin',customerController.createAdminPage)
+router.post('/adminDahboard/createAdmin',customerController.createAdmin)
+
+//delete amdins 
+router.post('/adminDashboard/admin/delete/:id"',customerController.deleteAdmin)
+
+
 
 module.exports = router;

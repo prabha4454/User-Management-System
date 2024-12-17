@@ -9,7 +9,12 @@ const mongoosDb=require('./server/config/db')
 const {flash} =require('express-flash-message')
 const session=require('express-session')
 
-
+// Session setup
+app.use(session({
+    secret: 'admin',
+    resave: false,
+    saveUninitialized: true
+}));
 //connect to database
 mongoosDb()
 
