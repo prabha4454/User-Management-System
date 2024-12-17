@@ -18,7 +18,7 @@ exports.clientRegisterPage=async (req,res,next)=>{
             title:'client page',
             description:'This is the crud-user management system'
         };
-        res.render(path.join(__dirname,'..','..','views','authentication','register'),{local, auth});
+        res.render(path.join(__dirname,'..','..','views','user','authentication','register'),{local, auth});
 
     } catch (error) {
         res.status(505).send('cannot find the page')
@@ -53,7 +53,7 @@ const auth='home';
             title:'home page',
             description:'This is the crud-user management system'
         };
-        res.render(path.join(__dirname,'..','..','views','client','home'),{local,auth});
+        res.render(path.join(__dirname,'..','..','views','user','client','home'),{local,auth});
         
     } catch (error) {
         res.status(505).send('Error Registering User')
@@ -74,7 +74,7 @@ exports.clientLoginPage=async (req,res,next)=>{
             title:'login page',
             description:'This is the crud-user management system'
         };
-        res.render(path.join(__dirname,'..','..','views','authentication','login'),{local, auth});
+        res.render(path.join(__dirname,'..','..','views','user','authentication','studentLogin'),{local, auth});
 
     } catch (error) {
         res.status(505).send('cannot find the page')
@@ -122,7 +122,7 @@ exports.homePage=async (req,res,next)=>{
             title:'Home page',
             description:'This is the crud-user management system'
         };
-        res.render(path.join(__dirname,'..','..','views','client','home'),{local, auth});
+        res.render(path.join(__dirname,'..','..','views','user','client','home'),{local, auth});
 
         
     } catch (error) {
@@ -145,7 +145,7 @@ exports.userDashboard=async(req,res,next)=>{
             title:'home page',
             description:'This is the crud-user management system'
         };
-        res.render(path.join(__dirname,'..','..','views','client','userDashboard'),{local,auth,allNotes});
+        res.render(path.join(__dirname,'..','..','views','user','client','userDashboard'),{local,auth,allNotes});
         
     } catch (error) {
         res.status(505).send('Error Registering User')
@@ -167,7 +167,7 @@ exports.notesSearchPage=async(req,res,next)=>{
                 title:'home page',
                 description:'This is the crud-user management system'
             };
-            res.render(path.join(__dirname,'..','..','views','client','notes'),{local,auth,section});
+            res.render(path.join(__dirname,'..','..','views','user','client','notes'),{local,auth,section});
             
         } catch (error) {
             res.status(505).send('Error finding page')
@@ -194,7 +194,7 @@ exports.notesFinder=async(req,res,next)=>{
             title:'home page',
             description:'This is the crud-user management system'
         };
-        res.render(path.join(__dirname,'..','..','views','client','notes'),{local,auth,findNotes,section});
+        res.render(path.join(__dirname,'..','..','views','user','client','notes'),{local,auth,findNotes,section});
     } catch (error) {
         res.status(505).send('Error finding notes')
         

@@ -1,0 +1,73 @@
+<div
+    class="d-flex  justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 mx-4 border-bottom">
+    <h1 class=" u-a-h1 "> USER dETAILS</h1>
+
+    <div class="btn-toolbar mb-2 mb-md 0">
+        <div class="btn-group me-2">
+            <form action="/adminDashboard/user/edit/<%= view.id %>" method="get">
+                <!-- <i class="bi bi-arrow-right text-primary " style="font-size: 20px;"></i> --> <button class="btn btn-sm btn-primary" type="submit"> <i class="bi bi-pen"> </i> Edit</button>
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+<!-- listes -->
+
+<div class="col py-3 mx-4">
+
+    <div class="row justify-content-between ">
+        <div class="col ">
+            <nav area-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/"><i class="bi bi-arrow-left"></i> Dashboard</a></li>
+                    <li class="breadcrumb-item active">User Name: <%= view.fname %> <%= view.lname %></li>
+
+                </ol>
+            </nav>
+        </div>
+
+        <div class="col text-end-fw-lighter">
+            <b>userId:<%= view.id  %></b>
+        </div>
+    </div>
+</div>
+
+
+<!-- user details table -->
+
+<div class="table-responsive  mt-5">
+    <table class="table-success table w-75 mx-auto">
+        <tr>
+            <th >First Name:</th>
+            <td class="text-danger"><%= view.fname %></td>
+        </tr>
+        <tr>
+            <th>Last Name:</th>
+            <td class="text-danger"><%= view.lname %></td>
+
+        </tr>
+        <tr>
+            <th>Email:</th>
+            <td class="text-danger"><%= view.email %></td>
+        </tr>
+        <tr>
+            <th>PHONE:</th>
+            <td class="text-danger"><%= view.tel %></td>
+            
+        </tr>
+        <tr>
+            <th>CREATED AT:</th>
+            <td class="text-danger"><%= new Date(view.createdAt).toUTCString() %></td>
+        </tr>
+        <tr>
+            <th>UPDATED AT:</th>
+            <td class="text-danger"><% if (view.updatedAt) { %>
+                <%= new Date(view.updatedAt).toUTCString() %>
+             
+        <% } else { %>
+            not updated yet
+            <% } %> </td>
+        </tr>
+    </table>
+</div>

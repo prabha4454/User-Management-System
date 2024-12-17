@@ -1,6 +1,6 @@
 const User=require('../model/User')
 const path=require('path')
-const fs = require('fs');
+const fs = require('fs/promises');
 
 const Notes=require('../model/Notes')
 
@@ -22,6 +22,16 @@ const storeFile=multer.diskStorage({
 const upload = multer({storage:storeFile})
 
 
+
+/* 
+//Get
+// admin login page
+ */
+
+exports.adminLoginPage=async (req,res,next)=>{
+
+   
+}
 
 /* 
 //GET
@@ -60,7 +70,7 @@ exports.usersDetails=async (req,res)=>{
                   title:'Add User',
                   description:'This is the crud-user management system'
               };
-              res.render(path.join(__dirname,'..','..','views','customer','usersDetails'),{local, users,auth});
+              res.render(path.join(__dirname,'..','..','views','admin','customer','usersDetails'),{local, users,auth});
               
           } catch (error) {
               res.status(505).send('Error Fetching User')
@@ -80,7 +90,7 @@ exports.addUser=async (req,res)=>{
         title:'Add User',
         description:'This is the crud-user management system'
     };
-    res.render(path.join(__dirname,'..','..','views','customer','addUser'),{local,auth});
+    res.render(path.join(__dirname,'..','..','views','admin','customer','addUser'),{local,auth});
 
 };
 
@@ -129,7 +139,7 @@ exports.profileUserPage=async(req,res,next)=>{
             title:' User profile',
             description:'This is the crud-user management system'
         };
-         res.render(path.join(__dirname,'..','..','views','customer','profile'),{local,view,auth});
+         res.render(path.join(__dirname,'..','..','views','admin','customer','profile'),{local,view,auth});
     }
     catch(err){
         res.status(500).send('Error finging the Details'+err);
@@ -149,7 +159,7 @@ exports.editUserPage=async(req,res,next)=>{
             title:'Edit User',
             description:'This is the crud-user management system'
         };
-         res.render(path.join(__dirname,'..','..','views','customer','editUser'),{local,edit,auth});
+         res.render(path.join(__dirname,'..','..','views','admin','customer','editUser'),{local,edit,auth});
     }
     catch(err){
         res.status(500).send('Error finging the Details'+err);
@@ -213,7 +223,7 @@ exports.registerUser=async (req,res,next)=>{
         title:'register User',
         description:'This is the crud-user management system'
     };
-    res.render(path.join(__dirname,'..','..','views','authentication','register'),{local,auth});
+    res.render(path.join(__dirname,'..','..','views','admin','authentication','register'),{local,auth});
 
 };
 
@@ -229,7 +239,7 @@ exports.fileUpload=async (req,res,next)=>{
         title:'file uploader ',
         description:'This is the crud-user management system'
     };
-    res.render(path.join(__dirname,'..','..','views','studyMaterials','fileUpload'),{local,auth});
+    res.render(path.join(__dirname,'..','..','views','admin','studyMaterials','fileUpload'),{local,auth});
 
     } catch (error) {
         res.status(500).send('Error error loading page');
@@ -294,10 +304,59 @@ exports.notesDetails=async (req,res)=>{
               title:'Notes Details',
               description:'This is the crud-user management system'
           };
-          res.render(path.join(__dirname,'..','..','views','studyMaterials','notesList'),{local, allNotes,auth});
+          res.render(path.join(__dirname,'..','..','views','admin','studyMaterials','notesList'),{local, allNotes,auth});
           
       } catch (error) {
           res.status(505).send('Error Fetching Details')
       }
 
 };
+
+
+/* 
+//GET
+// create new admin users page
+//  */
+
+exports.createAdminPage=async(req,res,next)=>{
+    try {
+        const auth='admin';
+       
+          const local={
+              title:'Admin Dashboard',
+              description:'This is the crud-user management system'
+          };
+          res.render(path.join(__dirname,'..','..','views','admin','authentication','createAdmin'),{local,auth});
+          
+      } catch (error) {
+          res.status(505).send('Error loading the page')
+      }
+
+}
+
+/* 
+//POST
+// delete notes file
+//  */
+
+exports.deletenotes=async(req,res,next)=>{
+
+    try {
+        const deleteNotes=await Notes.findOne({ _id:req.params.id});
+        if(deleteNotes){
+            const filePath=deleteNotes.path
+            await fs.unlink(filePath)
+        }
+        else{
+            console.log('cannot find file or file path')
+        }
+
+
+        await Notes.findByIdAndDelete(req.params.id);
+
+        res.redirect('/adminDashboard/materials/notesList')
+    } catch (err) {
+        res.status(500).send('cannot delete file'+err)
+    }
+
+}

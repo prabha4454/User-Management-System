@@ -1,0 +1,70 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <h1 class="text-center mb-4">Upload Your Notes</h1>
+            <form method="post" action="/adminDashboard/materials/fileUploader" enctype="multipart/form-data" >
+                <!-- Title Field -->
+
+                <div class="row mb-3">
+                    <div class="form-group"> <label for="noteTitle">Subject Name:</label>
+                        <input type="text" class="form-control" id="noteTitle" name="subname"
+                            placeholder="Enter the title of your notes" required>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+
+                    <div class="form-group col">
+                        <label for="subcode">Subject Code:</label>
+                        <input type="text" class="form-control" id="subcode" name="subcode"
+                            placeholder="Enter the subject code" required>
+                    </div>
+
+                    <div class="form-group col"> <label for="dep">Department:</label>
+                        <select name="department" id="dep" class="form-control" required>
+                            <option value="Computer Science">CSE</option>
+                            <option value="Information Technology">IT</option>
+                            <option value="Mechanical">MECH</option>
+                            <option value="Electrical And Electronics">EEE</option>
+                            <option value="Electrical And Communication">ECE</option>
+                            <option value="civl">CIVIL </option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="form-group col"> <label for="sem">Semester:</label>
+                        <select name="semester" id="sem" class="form-control" required>
+                            <option value="1st Semester">SEM-1</option>
+                            <option value="2nd Semester">SEM-2</option>
+                            <option value="3rd Semester">SEM-3</option>
+                            <option value="4th Semester">SEM-4</option>
+                            <option value="5th Semester">SEM-5</option>
+                            <option value="6th Semester">SEM-6</option>
+                            <option value="7th Semester">SEM-7</option>
+                            <option value="8th Semester">SEM-8</option>
+                        </select>
+                    </div>
+                    <div class="form-group col">
+                        <label for="studyear">year:</label>
+                        <select name="studyear" id="year" class="form-control" required>
+                            <option value="First Year">FIRST</option>
+                            <option value="Secont Year">SECOND</option>
+                            <option value="Third Year">THIRD</option>
+                            <option value="Fourth Year">FOURTH</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- File Upload Field -->
+                <div class="mb-3 form-group">
+                    <label for="noteFile">Upload File</label>
+                    <input class="form-control" type="file" id="noteFile" name="noteFile" required>
+                </div>
+                <!-- Preview Area -->
+                <div id="filePreview" class="mb-3"></div>
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary w-100 form-control">Upload</button>
+            </form>
+        </div>
+    </div>
+</div>

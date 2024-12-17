@@ -20,21 +20,39 @@ const upload = multer({storage:storeFile})
 /* 
 Customer Routes
  */
+
+//admin Dashboard
 router.get('/adminDashboard',customerController.adminDashboard)
+
+//user details list
 router.get('/adminDashboard/usersDetails',customerController.usersDetails)
 
+//for add new user
 router.get('/adminDahboard/addUser', customerController.addUser);
-router.get('/reg',customerController.registerUser)
+router.get('/reg',customerController.registerUser);
 router.post('/adminDahboard/addUser', customerController.postUser);
 
-router.get('/adminDashboard/user/profile/:id',customerController.profileUserPage)
-router.get('/adminDashboard/user/edit/:id',customerController.editUserPage)
-router.post('/adminDashboard/user/edit/:id',customerController.editUser)
+//user full details as profile
+router.get('/adminDashboard/user/profile/:id',customerController.profileUserPage);
 
+//edit |update user details
+router.get('/adminDashboard/user/edit/:id',customerController.editUserPage);
+router.post('/adminDashboard/user/edit/:id',customerController.editUser);
 
-router.post('/adminDashboard/user/delete/:id',customerController.deleteUser)
+//delete users for both admin and students
+router.post('/adminDashboard/user/delete/:id',customerController.deleteUser);
 
+//upload study materials
 router.get('/adminDashboard/materials/file',customerController.fileUpload);
 router.post('/adminDashboard/materials/fileUploader',upload.single('noteFile'),customerController.fileUploader);
+
+//notes details as teble list
 router.get('/adminDashboard/materials/notesList',customerController.notesDetails);
+
+//For delete notes 
+router.post('/adminDashboard/materials/delete/:id',customerController.deletenotes)
+
+//create admin
+router.get('/adminDahboard/createAdmin',customerController.createAdminPage)
+
 module.exports = router;

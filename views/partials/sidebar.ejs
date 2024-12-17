@@ -1,30 +1,46 @@
 <nav class="bg-light border-end vh-100" style="width: 220px;" id="sidebar">
-    <div class="p-3">
-      <h4>Menu</h4>
-      <ul class="list-unstyled">
-        <li>
-          <a href="#dashboardSubmenu" class="d-flex justify-content-between align-items-center text-decoration-none" data-bs-toggle="collapse">
-            Manage Account
-            <span class="ms-2">&#9662;</span>
-          </a>
-          <ul class="collapse list-unstyled ps-3 mt-2" id="dashboardSubmenu">
-            <li><a href="/adminDashboard/usersDetails" class="text-decoration-none">User Details</a></li>
-            <li><a href="/adminDahboard/addUser" class="text-decoration-none">Add User</a></li>
-          </ul>
-        </li>
-        <li class="mt-3">
-          <a href="#userSubmenu" class="d-flex justify-content-between align-items-center text-decoration-none" data-bs-toggle="collapse">
-            Study Material
-            <span class="ms-2">&#9662;</span>
-          </a>
-          <ul class="collapse list-unstyled ps-3 mt-2" id="userSubmenu">
-            <li><a href="/adminDashboard/materials/notesList" class="text-decoration-none">Notes List</a></li>
-            <li><a href="/adminDashboard/materials/file" class="text-decoration-none">upload notes</a></li>
-          </ul>
-        </li>
-        <li class="mt-3">
-          <a href="#" class="text-decoration-none">Settings</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <div class="p-3">
+    <h4>Menu</h4>
+    <ul class="list-unstyled  mt-2">
+      <li class="mb-3">
+        <a href="#userSubmenu" class="d-flex justify-content-between align-items-center text-decoration-none"
+          data-bs-toggle="collapse">
+          Manage User Account
+          <span class="ms-2">&#9662;</span>
+        </a>
+        <ul class="collapse list-unstyled ps-3 mt-2" id="userSubmenu">
+          <li><a href="/adminDashboard/usersDetails" class="text-decoration-none">User Details</a></li>
+          <li><a href="/adminDahboard/addUser" class="text-decoration-none">Add User</a></li>
+        </ul>
+      </li>
+      <li class="mb-3">
+        <a href="#adminSubmenu" class="d-flex justify-content-between align-items-center text-decoration-none"
+          data-bs-toggle="collapse">
+          Manage Admin Account
+          <span class="ms-2">&#9662;</span>
+        </a>
+        <ul class="collapse list-unstyled ps-3 mt-2" id="adminSubmenu">
+          <li><a href="/adminDahboard/addUser" class="text-decoration-none">Admin details</a></li>
+          <li><a href="/adminDahboard/createAdmin" class="text-decoration-none">Add Admin</a></li>
+        </ul>
+      </li>
+      <li class="mb-3">
+        <a href="#materialsSubmenu" class="d-flex justify-content-between align-items-center text-decoration-none"
+          data-bs-toggle="collapse">
+          Study Material
+          <span class="ms-2">&#9662;</span>
+        </a>
+        <ul class="collapse list-unstyled ps-3 mt-2" id="materialsSubmenu">
+          <li><a href="/adminDashboard/materials/notesList" class="text-decoration-none">Notes List</a></li>
+          <li><a href="/adminDashboard/materials/file" class="text-decoration-none">upload notes</a></li>
+        </ul>
+      </li>
+      <li class="mb-3">
+        <a href="/userDashboard" class="text-decoration-none">Student Dashboard</a>
+      </li>
+      <li class="mb-3">
+        <a href="#" class="text-decoration-none">Settings</a>
+      </li>
+    </ul>
+  </div>
+</nav>

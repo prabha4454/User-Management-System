@@ -12,8 +12,8 @@ router.get('/userDashboard/notes',clientController.notesSearchPage);
 router.post('/userDashboard/notes',clientController.notesFinder);
 router.get('/register',clientController.clientRegisterPage);
 router.post('/register',clientController.clientRegister)
-router.get('/login',clientController.clientLoginPage)
-router.post('/login',clientController.login)
+router.get('/studentLogin',clientController.clientLoginPage)
+router.post('/studentLogin',clientController.login)
 router.get('/home',clientController.homePage);
 
 
